@@ -1,0 +1,265 @@
+/**
+ * @file
+ * Styles for the moderation helpers toolbar form.
+ */
+
+div.gin-secondary-toolbar__layout-container {
+  margin-left: 0;
+}
+
+.gin-back-to-admin {
+  margin-left: 1rem;
+}
+
+.moderation-helper-form-inner {
+  --mod-primary: #087a45;
+  --mod-primary-light: #45a377;
+  --mod-primary-background: #ccecdb;
+  --mod-inactive: #333333;
+  --mod-inactive-light: #717171;
+  --mod-inactive-background: #eaeaea;
+  --mod-review: #801eb6;
+  --mod-review-light: #955fb6;
+  --mod-review-background: #e9d9f3;
+  --mod-draft: #604b0d;
+  --mod-draft-light: #ac8d23;
+  --mod-draft-background: #efebd9;
+  --mod-danger: #710000;
+  --mod-danger-light: #8f1212;
+  --mod-danger-background: #dddddd;
+  --mod-link: #394042;
+  --mod-link-hover: #2790b1;
+
+  font-size: 14px;
+  display: flex;
+  position: relative;
+  gap: 10px;
+  height: 100%;
+  margin-left: 10px;
+  box-sizing: border-box;
+}
+
+/* Edit / Version History icon links */
+.moderation-helper-form-inner .node-edit {
+  font-size: 20px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  align-self: center;
+  border-radius: 10px;
+  color: var(--gin-icon-color);
+  text-decoration: none;
+}
+
+.moderation-helper-form-inner .node-edit svg {
+  display: block;
+}
+
+.moderation-helper-form-inner .node-edit span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.moderation-helper-form-inner .node-edit:hover {
+  color: var(--gin-color-primary);
+  background: var(--gin-color-primary-light);
+}
+
+.moderation-helper-form-inner h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- State panels: shared base --- */
+.moderation-helper-form-inner .moderation-current,
+.moderation-helper-form-inner .moderation-latest,
+.moderation-helper-form-inner .moderation-default {
+  --cl: var(--mod-primary);
+  --bg: var(--mod-primary-background);
+  --light: var(--mod-primary-light);
+
+  padding: 4px 1em;
+  background: var(--bg);
+  color: var(--cl);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 3px;
+}
+
+.moderation-helper-form-inner .moderation-current > div,
+.moderation-helper-form-inner .moderation-latest > div,
+.moderation-helper-form-inner .moderation-default > div {
+  display: grid;
+  grid-template-columns: 1.2em 1fr auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "indicator message time"
+    ". actions user";
+  column-gap: 10px;
+}
+
+/* CSS-only status indicator dot, replacing Font Awesome icons */
+.moderation-helper-form-inner .moderation-current > div::before {
+  content: '';
+  grid-area: indicator;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--light);
+  align-self: center;
+  justify-self: center;
+}
+
+/* Grid areas */
+.moderation-helper-form-inner .moderation-message {
+  grid-area: message;
+  color: var(--cl);
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.moderation-helper-form-inner .moderation-time {
+  grid-area: time;
+  text-align: right;
+}
+
+.moderation-helper-form-inner .moderation-author {
+  grid-area: user;
+}
+
+.moderation-helper-form-inner .moderation-bottom {
+  grid-area: actions;
+}
+
+/* --- State-specific colour overrides --- */
+.moderation-helper-form-inner .moderation-latest.has-draft,
+.moderation-helper-form-inner .moderation-latest.draft,
+.moderation-helper-form-inner .moderation-current.unpublished-draft,
+.moderation-helper-form-inner .moderation-current.draft {
+  --cl: var(--mod-draft);
+  --bg: var(--mod-draft-background);
+  --light: var(--mod-draft-light);
+}
+
+.moderation-helper-form-inner .moderation-latest.review,
+.moderation-helper-form-inner .moderation-default.review,
+.moderation-helper-form-inner .moderation-current.review {
+  --cl: var(--mod-review);
+  --bg: var(--mod-review-background);
+  --light: var(--mod-review-light);
+}
+
+.moderation-helper-form-inner .moderation-current.old,
+.moderation-helper-form-inner .moderation-latest.archived,
+.moderation-helper-form-inner .moderation-default.archived {
+  --cl: var(--mod-inactive);
+  --bg: var(--mod-inactive-background);
+  --light: var(--mod-inactive-light);
+}
+
+/* Draft: Square */
+.moderation-helper-form-inner .moderation-current.draft > div::before,
+.moderation-helper-form-inner .moderation-current.unpublished-draft > div::before {
+  border-radius: 2px;
+}
+
+/* Review: Diamond */
+.moderation-helper-form-inner .moderation-current.review > div::before {
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+/* Old / Archived / Not-published: Triangle */
+.moderation-helper-form-inner .moderation-current.old > div::before,
+.moderation-helper-form-inner .moderation-current.archived > div::before,
+.moderation-helper-form-inner .moderation-current.not-published > div::before {
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* --- Latest / Default panels: smaller, outlined style --- */
+.moderation-helper-form-inner .moderation-latest,
+.moderation-helper-form-inner .moderation-default {
+  font-size: 0.9em;
+  background: transparent;
+  border: 3px solid var(--bg);
+  border-top: none;
+}
+
+.moderation-helper-form-inner .moderation-latest > div,
+.moderation-helper-form-inner .moderation-default > div {
+  grid-template-columns: auto auto auto;
+  grid-template-areas:
+    "message message time"
+    "actions actions user";
+}
+
+/* No indicator dot for secondary panels */
+.moderation-helper-form-inner .moderation-latest > div::before,
+.moderation-helper-form-inner .moderation-default > div::before {
+  display: none;
+}
+
+/* --- Action buttons and links --- */
+.moderation-helper-form-inner .moderation-bottom {
+  --main: var(--mod-link);
+  --color: #fff;
+  --border: var(--mod-link);
+  display: flex;
+  gap: 8px;
+}
+
+.moderation-helper-form-inner .moderation-bottom a,
+.moderation-helper-form-inner .moderation-bottom input[type="submit"] {
+  font-size: 1em;
+  letter-spacing: -0.01em;
+  color: var(--mod-link);
+  line-height: 1em;
+  box-sizing: border-box;
+  padding: 4px 0;
+  margin: 0;
+  align-items: center;
+  height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  font-weight: 600;
+}
+
+.moderation-helper-form-inner .moderation-bottom a {
+  text-underline-offset: 3px;
+  color: #000;
+  border-color: transparent;
+}
+
+.moderation-helper-form-inner .moderation-bottom a:hover {
+  color: var(--cl);
+}
+
+.moderation-helper-form-inner .moderation-bottom input[type="submit"] {
+  padding: 4px 10px;
+  color: var(--color);
+  background: var(--main);
+  cursor: pointer;
+}
+
+.moderation-helper-form-inner .moderation-bottom input[type="submit"]:hover {
+  border-color: var(--main);
+  background: var(--color);
+  color: var(--main);
+}

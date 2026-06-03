@@ -1,0 +1,14 @@
+<a href="{{ edit.url }}" class="node-edit" title="{{ edit.title }}">
+    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+        <path d="m15 5 4 4"/>
+    </svg>
+    <span>{{ edit.title }}</span>
+</a>
+<a href="{{ history.url }}" class="node-edit" title="{{ history.title }}">
+    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+    </svg>
+    <span>{{ history.title }}</span>
+</a>

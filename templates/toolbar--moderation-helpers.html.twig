@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Toolbar template override for Moderation Helpers.
+ *
+ * Extends the Gin toolbar to display moderation controls in the
+ * secondary toolbar area when viewing moderated content on the frontend.
+ */
+#}
+{% if core_navigation %}
+  {% if secondary_toolbar_frontend %}
+    <div class="gin-secondary-toolbar gin-secondary-toolbar--frontend" data-offset-top>
+      <div class="gin-secondary-toolbar__layout-container">
+        <div class="gin-breadcrumb-wrapper">
+          <div class="region-breadcrumb">
+            {% if moderation_form %}
+              {{ moderation_form }}
+            {% else %}
+              <a class="gin-breadcrumb__link gin-back-to-admin" href="{{ path('system.admin_content') }}">
+                {{- 'Back to Administration'|t -}}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+        {{ gin_secondary_toolbar }}
+      </div>
+    </div>
+  {% endif %}
+{% else %}
+  {% include '@gin/navigation/toolbar--gin.html.twig' ignore missing %}
+
+  {% if secondary_toolbar_frontend and toolbar_variant != 'classic' %}
+    <div class="gin-secondary-toolbar gin-secondary-toolbar--frontend" data-offset-top>
+      <div class="gin-secondary-toolbar__layout-container">
+        <div class="gin-breadcrumb-wrapper">
+          <div class="region-breadcrumb">
+            {% if moderation_form %}
+              {{ moderation_form }}
+            {% else %}
+              <a class="gin-breadcrumb__link gin-back-to-admin" href="{{ path('system.admin_content') }}">
+                {{- 'Back to Administration'|t -}}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+        {% include '@gin/navigation/toolbar--gin--secondary.html.twig' ignore missing %}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

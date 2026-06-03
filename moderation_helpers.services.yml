@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    autoconfigure: true
+  moderation_helpers.moderation:
+    class: Drupal\moderation_helpers\ModerationHelper
+    arguments:
+      - '@current_user'
+      - '@entity_type.manager'
+      - '@content_moderation.moderation_information'
+      - '@content_moderation.state_transition_validation'
+      - '@datetime.time'
+  moderation_helpers.latest_node_redirect_subscriber:
+    class: Drupal\moderation_helpers\EventSubscriber\LatestNodeRedirectSubscriber
+    arguments:
+      - '@current_user'
+    tags:
+      - { name: event_subscriber }

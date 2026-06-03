@@ -1,0 +1,19 @@
+moderation_helpers.settings:
+  path: '/admin/config/workflow/moderation-helpers'
+  defaults:
+    _form: '\Drupal\moderation_helpers\Form\ModerationHelpersSettingsForm'
+    _title: 'Moderation Helpers'
+  requirements:
+    _permission: 'administer moderation helpers'
+
+moderation_helpers.workflow:
+  path: '/admin/config/workflow/moderation-helpers/{workflow}'
+  defaults:
+    _form: '\Drupal\moderation_helpers\Form\ModerationHelpersWorkflowForm'
+    _title_callback: '\Drupal\moderation_helpers\Form\ModerationHelpersWorkflowForm::title'
+  requirements:
+    _permission: 'administer moderation helpers'
+  options:
+    parameters:
+      workflow:
+        type: entity:workflow

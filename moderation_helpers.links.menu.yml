@@ -1,0 +1,5 @@
+moderation_helpers.settings:
+  title: 'Moderation Helpers'
+  description: 'Configure moderation helper settings for content moderation workflows.'
+  route_name: moderation_helpers.settings
+  parent: system.admin_config_workflow

@@ -1,0 +1,9 @@
+name: Moderation Helpers
+type: module
+description: Utilities for making content moderation easier.
+package: Custom
+core_version_requirement: ^11
+php: 8.4
+dependencies:
+  - drupal:workflows
+  - drupal:content_moderation

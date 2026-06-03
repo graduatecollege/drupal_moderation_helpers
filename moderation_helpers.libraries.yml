@@ -1,0 +1,4 @@
+moderation:
+  css:
+    theme:
+      css/moderation.css: {}

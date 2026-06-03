@@ -1,0 +1,30 @@
+moderation_helpers.settings:
+  type: config_object
+  label: 'Moderation Helpers settings'
+  mapping:
+    workflows:
+      type: sequence
+      label: 'Workflow settings'
+      sequence:
+        type: mapping
+        label: 'Settings for a single workflow'
+        mapping:
+          enabled:
+            type: boolean
+            label: 'Whether moderation helpers are enabled for this workflow'
+          states:
+            type: sequence
+            label: 'State display settings'
+            sequence:
+              type: mapping
+              label: 'Settings for a single state'
+              mapping:
+                display:
+                  type: string
+                  label: 'Display style (draft, review, published, archived)'
+                transitions:
+                  type: sequence
+                  label: 'Transitions to show as toolbar buttons'
+                  sequence:
+                    type: string
+                    label: 'Transition ID'
