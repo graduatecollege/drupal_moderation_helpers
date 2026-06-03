@@ -1,0 +1,9 @@
+{
+  "name": "graduatecollege/moderation_helpers",
+  "description": "Moderation helpers for Gin Toolbar.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": "^11"
+  }
+}
