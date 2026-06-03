@@ -124,8 +124,6 @@ class ModerationHelperForm extends FormBase {
       ],
     ];
 
-    $currentState = NULL;
-
     // These flags indicate that panels for the default or latest revision
     // should be populated later, when the current revision differs from them.
     $defaultState = NULL;
