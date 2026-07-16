@@ -234,7 +234,9 @@ class ModerationHelperForm extends FormBase {
           $transitionButtons,
         );
       }
-      $latestState = TRUE;
+      // A separate latest panel is only useful when it identifies a pending
+      // revision. Published revisions do not need to duplicate this panel.
+      $latestState = $state->isLatestPending();
     }
     else {
       // Viewing the latest revision (not default) — a forward revision.
@@ -292,7 +294,11 @@ class ModerationHelperForm extends FormBase {
       }
       else {
         $latestState = $this->renderState(
-          $state->latest, 'has-draft', $this->t('Has Updated Draft'), [
+          $state->latest,
+          $display($state->latest->state->id(), 'published'),
+          $this->t('Latest Version: @state', [
+            '@state' => (string) $state->latest->state->label(),
+          ]), [
             'view' => $viewLatest,
           ],
         );
