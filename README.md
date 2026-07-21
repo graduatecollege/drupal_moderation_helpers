@@ -16,7 +16,7 @@ the toolbar displays:
 
 ## Requirements
 
-- **Drupal 11** (PHP 8.4+)
+- **Drupal 10.4+** (PHP 8.1+)
 - **Content Moderation** (core) — must be enabled
 - **Workflows** (core) — must be enabled
 - **Gin** admin theme with **Gin Toolbar** — the moderation panel renders
